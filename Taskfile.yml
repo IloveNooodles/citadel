@@ -3,7 +3,7 @@
 version: "3"
 
 tasks:
-  check-talos:
+  check-talos-node:
     dir: ./terraform
     cmds:
       - terraform init
