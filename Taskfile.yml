@@ -36,3 +36,16 @@ tasks:
       TALOSCONFIG: "_out/talosconfig"
     cmds:
       - talosctl --talosconfig $TALOSCONFIG kubeconfig ~/.kube/talos-kubeconfig.yml
+  setup-argocd:
+    desc: This is to install argocd in the kubernetes cluster.
+    summary: See https://argo-cd.readthedocs.io/en/stable/getting_started. The server is accessible in the $PORT and Password available on the `pass` file
+    env:
+      PORT: 9999
+    cmds:
+      - |
+        kubectl create namespace argocd
+        kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+        kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "ClusterIP"}}'
+        PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n argocd \
+          -o jsonpath="{.data.password}" | base64 --decode)
+        echo "ArgoCD password: $PASSWORD" > pass
