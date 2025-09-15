@@ -4,7 +4,7 @@ metadata:
   name: argocd-install
   namespace: argocd
 spec:
-  project: default
+  project: infra
   source:
     repoURL: "https://github.com/argoproj/argo-cd.git"
     path: manifests/cluster-install
