@@ -9,6 +9,8 @@ spec:
     repoURL: "https://github.com/IloveNooodles/citadel.git"
     targetRevision: main
     path: argocd/apps
+    directory:
+      recruse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
@@ -16,5 +18,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-  syncOptions:
-    - CreateNamespace=true
+    syncOptions:
+      - CreateNamespace=true # Create the target namespace if it doesn't exist
