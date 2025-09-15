@@ -1,0 +1,12 @@
+server:
+  ha:
+    enabled: false
+    replicas: 2
+  dataStorage:
+    enabled: true
+    storageClass: vault-storage
+    size: 5Gi
+  auditStorage:
+    enabled: false
+    storageClass: vault-storage
+    size: 1Gi

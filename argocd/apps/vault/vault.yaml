@@ -11,6 +11,8 @@ spec:
     targetRevision: "0.30.1"
     helm:
       releaseName: vault
+      valuesFile:
+        - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: vault
