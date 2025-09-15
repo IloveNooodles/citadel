@@ -9,8 +9,6 @@ spec:
     repoURL: "https://github.com/argoproj/argo-cd.git"
     path: manifests/cluster-install
     targetRevision: v3.1.5
-    directory:
-      recruse: true
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd

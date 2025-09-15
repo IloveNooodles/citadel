@@ -47,4 +47,4 @@ tasks:
         kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
         kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "ClusterIP"}}'
         PASSWORD=$(kubectl get secret argocd-initial-admin-secret -n argocd \
-          -o jsonpath="{.data.password}" | base64 --decode) && echo "ArgoCD password: $PASSWORD" > pass
+          -o jsonpath="{.data.password}" | base64 --decode) && echo -ne "ArgoCD password: $PASSWORD" > pass
