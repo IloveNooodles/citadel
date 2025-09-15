@@ -11,6 +11,8 @@ spec:
     targetRevision: "4.6.2"
     helm:
       releaseName: couchdb
+      valuesFile:
+        - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
     namespace: couchdb
