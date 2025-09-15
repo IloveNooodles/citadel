@@ -4,6 +4,7 @@ namespace: argocd
 resources:
   - argocd.yaml
   - projects/infra.yaml
+  - plugins/vault.yaml
 
 patches:
   - target:
