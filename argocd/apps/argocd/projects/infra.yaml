@@ -5,23 +5,19 @@ items:
     metadata:
       creationTimestamp: "2025-09-14T09:21:56Z"
       generation: 1
-      name: default
-      namespace: argocd
-      resourceVersion: "521711"
-      uid: e8f237d8-4972-4646-b932-47fbeab3b43e
+      name: infra
+      namespace: infra
     spec:
       clusterResourceWhitelist:
         - group: "*"
           kind: "*"
       destinations:
-        # Do not allow any app to be installed in `kube-system`
         - namespace: "!kube-system"
           server: "*"
         - namespace: "*"
           server: "*"
       sourceRepos:
         - "*"
-    status: {}
 kind: List
 metadata:
   resourceVersion: ""
