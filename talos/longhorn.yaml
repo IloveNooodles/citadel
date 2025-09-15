@@ -8,3 +8,9 @@ machine:
           - bind
           - rshared
           - rw
+  kernel:
+    modules:
+      - name: nbd
+      - name: iscsi_tcp
+      - name: iscsi_generic
+      - name: configf
