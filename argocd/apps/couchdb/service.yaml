@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: couchdb-nodeport-service
   namespace: couchdb
+  annotations:
+    argocd.argoproj.io/managed: "true"
 spec:
   type: NodePort
   selector:
