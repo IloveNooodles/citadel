@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_download_file" "talos_image" {
   datastore_id = "local"
   node_name    = var.proxmox_node_name
 
-  url = "https://factory.talos.dev/image/b31ffaaff6bb43ea2574c8de2394fda93e146b80520e44456d69beef62452231/v1.11.0/metal-amd64.iso"
+  url = "https://factory.talos.dev/image/6d1f5bd37d6a6bf937ad651c5482d93571942c19bb32dde87b6a17b5e443ec39/v1.11.0/metal-amd64.iso"
 }
 
 resource "proxmox_virtual_environment_vm" "talos_template" {
@@ -27,14 +27,8 @@ resource "proxmox_virtual_environment_vm" "talos_template" {
   }
 
   memory {
-    dedicated = 2048
-    floating  = 2048
+    dedicated = 4096
   }
-
-  # efi_disk {
-  #   datastore_id = var.proxmox_datastore_id
-  #   type         = "4m"
-  # }
 
   disk {
     datastore_id = var.proxmox_datastore_id
@@ -65,13 +59,13 @@ locals {
       "node_name" = var.proxmox_node_name
       "vm_id"     = 102
       "cpu"       = 2
-      "tags"      = ["control-plane"]
+      "tags"      = ["kubernetes", "control-plane"]
     }
     "talos-worker-0" = {
       "node_name" = var.proxmox_node_name
       "vm_id"     = 103
       "cpu"       = 2
-      "tags"      = ["worker"]
+      "tags"      = ["kubernetes", "worker"]
     }
   }
 }

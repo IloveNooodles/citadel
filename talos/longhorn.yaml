@@ -8,9 +8,13 @@ machine:
           - bind
           - rshared
           - rw
+  sysctls:
+    vm.nr_hugepages: "1024"
   kernel:
     modules:
       - name: nbd
       - name: iscsi_tcp
-      - name: iscsi_generic
-      - name: configf
+      - name: libiscsi
+      - name: configfs
+      - name: nvme_tcp
+      - name: vfio_pci

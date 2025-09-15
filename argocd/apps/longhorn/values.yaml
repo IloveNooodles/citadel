@@ -1,0 +1,6 @@
+longhorn:
+  defaultSettings:
+    iscsiEnabled: false
+    v1DataEngineEnabled: true
+    v2DataEngineEnabled: true
+    backingImageEnabled: true

@@ -16,6 +16,8 @@ spec:
         values: |
           preUpgradeChecker:
             jobEnabled: false
+        valuesFile:
+          - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
