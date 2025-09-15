@@ -3,6 +3,9 @@ kind: Kustomization
 namespace: argocd
 resources:
   - argocd.yaml
+  - projects/infra.yaml
+
+patchesStrategicMerge:
+  - repo-server/argocd-repo-server.yaml
   - config-map/argocd-cm.yaml
   - rbac/argocd-rbac-cm.yaml
-  - projects/infra.yaml
