@@ -4,4 +4,4 @@ metadata:
   name: argocd-custom-config-map
   namespace: argocd
 data:
-  timeout.reconciliation: 300s
+  timeout.reconciliation: 100s
