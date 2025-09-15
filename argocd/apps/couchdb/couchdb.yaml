@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: couchdb
+  namespace: argocd
+spec:
+  project: infra
+  source:
+    repoURL: "https://apache.github.io/couchdb-helm"
+    chart: couchdb
+    targetRevision: "4.6.2"
+    helm:
+      releaseName: couchdb
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: couchdb
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
