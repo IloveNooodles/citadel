@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: argocd-cm
+  name: argocd-custom-config-map
   namespace: argocd
 data:
   timeout.reconciliation: 300s
-  reposerver.cache.expiration: 24h
-  admin.enabled: "true"
