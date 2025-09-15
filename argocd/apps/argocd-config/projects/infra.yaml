@@ -5,10 +5,8 @@ items:
     metadata:
       creationTimestamp: "2025-09-14T09:21:56Z"
       generation: 1
-      name: default
-      namespace: argocd
-      resourceVersion: "521711"
-      uid: e8f237d8-4972-4646-b932-47fbeab3b43e
+      name: infra
+      namespace: infra
     spec:
       clusterResourceWhitelist:
         - group: "*"
@@ -21,7 +19,15 @@ items:
           server: "*"
       sourceRepos:
         - "*"
-    status: {}
+      # roles:
+      #   # A role which provides read-only access to all applications in the project
+      #   - name: read-only
+      #     description: Read-only privileges to infra-projects
+      #     policies:
+      #       - p, proj:infra:read-only, applications, get, infra/*, allow
+      #     groups:
+      #       - my-oidc-group
+      #     status: {}
 kind: List
 metadata:
   resourceVersion: ""
