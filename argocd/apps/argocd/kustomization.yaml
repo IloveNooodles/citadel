@@ -5,7 +5,7 @@ resources:
   - argocd.yaml
   - projects/infra.yaml
 
-patchesStrategicMerge:
-  - repo-server/argocd-repo-server.yaml
-  - config-map/argocd-cm.yaml
-  - rbac/argocd-rbac-cm.yaml
+patches:
+  - path: repo-server/argocd-repo-server.yaml
+  - path: config-map/argocd-cm.yaml
+  - path: rbac/argocd-rbac-cm.yaml
