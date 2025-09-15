@@ -6,6 +6,15 @@ resources:
   - projects/infra.yaml
 
 patches:
-  - path: repo-server/argocd-repo-server.yaml
-  - path: config-map/argocd-cm.yaml
-  - path: rbac/argocd-rbac-cm.yaml
+  - target:
+      kind: Deployment
+      name: argocd-repo-server
+    path: repo-server/argocd-repo-server.yaml
+  - target:
+      kind: ConfigMap
+      name: argocd-cm
+    path: config-map/argocd-cm.yaml
+  - target:
+      kind: ConfigMap
+      name: argocd-rbac-cm
+    path: rbac/argocd-rbac-cm.yaml
