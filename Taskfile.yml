@@ -14,16 +14,18 @@ tasks:
   gen-talos-config:
     env:
       TALOSCONFIG: "_out/talosconfig"
-      CONTROL_PLANE_IP: 192.168.1.110
-      WORKER_IP: 192.168.1.236
+      CONTROL_PLANE_IP: 192.168.1.57
+      WORKER_IP: 192.168.1.133
+      TALOS_VERSION: v1.11.1
+      SCHEMA: b1ba84be4f5193a24085cc7e22fce31105e1583504d7d5aef494318f7cb1abd0
     cmds:
-      - talosctl gen config talos-proxmox-cluster https://$CONTROL_PLANE_IP:6443 --output-dir _out --install-image factory.talos.dev/installer/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515:v1.11.0
+      - talosctl gen config talos-proxmox-cluster https://$CONTROL_PLANE_IP:6443 --output-dir _out --install-image factory.talos.dev/installer/$SCHEMA:$TALOS_VERSION
       - talosctl --talosconfig $TALOSCONFIG apply-config --insecure --nodes $CONTROL_PLANE_IP --file _out/controlplane.yaml
       - talosctl --talosconfig $TALOSCONFIG apply-config --insecure --nodes $WORKER_IP --file _out/worker.yaml
       - talosctl --talosconfig $TALOSCONFIG config endpoint $CONTROL_PLANE_IP
       - talosctl --talosconfig $TALOSCONFIG config node $CONTROL_PLANE_IP
       - talosctl --talosconfig $TALOSCONFIG config info
-  boostrap-talos:
+  bootstrap-talos:
     desc: This will bootstrap the talos cluster. Make sure to have healthy nodes before running this command.
     env:
       TALOSCONFIG: "_out/talosconfig"
@@ -44,8 +46,10 @@ tasks:
         kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
         kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "ClusterIP"}}'
   get-argocd-password:
+    desc: This will get the password for the argocd. Need to wait until the argocd server is active
     cmds:
       - kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath="{.data.password}" | base64 --decode
   port-forward-argocd:
+    desc: This will port forward the argocd server to the local machine. Access it through the 8080
     cmds:
       - kubectl port-forward svc/argocd-server -n argocd 8080:443
