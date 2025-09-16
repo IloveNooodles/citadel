@@ -15,8 +15,7 @@ spec:
         couchdbConfig:
           couchdb:
             uuid: decafbaddecafbaddecafbaddecafbad
-        singleNode: true
-        replicas: 1
+        clusterSize: 1
   destination:
     server: "https://kubernetes.default.svc"
     namespace: couchdb
