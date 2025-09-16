@@ -15,7 +15,16 @@ spec:
         couchdbConfig:
           couchdb:
             uuid: decafbaddecafbaddecafbaddecafbad
-        clusterSize: 1
+          httpd:
+            enable_cors: true
+          chttpd:
+            enable_cors: true
+          cors:
+            origins: "*"
+            credentials: true
+            headers: "accept, authorization, content-type, origin, referer, x-csrf-token"
+            methods: "GET, PUT, POST, HEAD, DELETE, OPTIONS"
+          clusterSize: 1
   destination:
     server: "https://kubernetes.default.svc"
     namespace: couchdb
