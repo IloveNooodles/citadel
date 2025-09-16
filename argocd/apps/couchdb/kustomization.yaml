@@ -3,3 +3,8 @@ kind: Kustomization
 resources:
   - couchdb.yaml
   - service.yaml
+patches:
+  - path: configmap.yaml
+    target:
+      kind: ConfigMap
+      name: couchdb-couchdb
