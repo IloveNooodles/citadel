@@ -3,7 +3,7 @@ resource "proxmox_virtual_environment_download_file" "talos_image" {
   datastore_id = "local"
   node_name    = var.proxmox_node_name
 
-  url = "https://factory.talos.dev/image/6d1f5bd37d6a6bf937ad651c5482d93571942c19bb32dde87b6a17b5e443ec39/v1.11.1/metal-amd64.iso"
+  url = "https://factory.talos.dev/image/b35305d8b7a21098b24575a51aaf72bd8cc0e1f527653ad20735d3addf09a5f7/v1.11.1/metal-amd64.iso"
 }
 
 resource "proxmox_virtual_environment_vm" "talos_template" {

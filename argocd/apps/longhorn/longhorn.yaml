@@ -16,15 +16,6 @@ spec:
         values: |
           preUpgradeChecker:
             jobEnabled: false
-          longhorn:
-            defaultSettings:
-              iscsiEnabled: false
-              v1DataEngineEnabled: true
-              v2DataEngineEnabled: true
-              backingImageEnabled: true
-              iscsiDiscoveryMethod: ""
-              iscsiTargets: ""
-              iscsiTargetsLun: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
