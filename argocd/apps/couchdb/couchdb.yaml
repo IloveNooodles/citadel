@@ -15,7 +15,7 @@ spec:
         couchdbConfig:
           couchdb:
             uuid: decafbaddecafbaddecafbaddecafbad
-          clusterSize: 1
+        clusterSize: 1
   destination:
     server: "https://kubernetes.default.svc"
     namespace: couchdb
