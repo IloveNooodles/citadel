@@ -60,7 +60,7 @@ resource "proxmox_virtual_environment_vm" "omarchy" {
     size         = local.configuration.omarchy.installation_disk
   }
 
-  # Data disk
+  # Datadisk
   disk {
     datastore_id = var.proxmox_datastore_id
     interface    = "scsi1"
