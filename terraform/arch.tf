@@ -1,13 +1,14 @@
 locals {
   configuration = {
     "omarchy" = {
-      "name"      = "gawrgare-omarchy"
-      "node_name" = var.proxmox_node_name
-      "vm_id"     = 101
-      "cpu"       = 2
-      "tags"      = ["arch", "omarchy"]
-      "memory"    = 4096
-      "disk"      = 50
+      "name"              = "gawrgare-omarchy"
+      "node_name"         = var.proxmox_node_name
+      "vm_id"             = 101
+      "cpu"               = 2
+      "tags"              = ["arch", "omarchy"]
+      "memory"            = 4096
+      "installation_disk" = 10
+      "data_disk"         = 50
     }
     "bootable" = {
       type      = "iso"
@@ -49,13 +50,23 @@ resource "proxmox_virtual_environment_vm" "omarchy" {
     dedicated = local.configuration.omarchy.memory
   }
 
+  # Installation disk
   disk {
     datastore_id = var.proxmox_datastore_id
     file_id      = proxmox_virtual_environment_download_file.omarchy_image.id
     interface    = "scsi0"
     iothread     = true
     discard      = "on"
-    size         = local.configuration.omarchy.disk
+    size         = local.configuration.omarchy.installation_disk
+  }
+
+  # Data disk
+  disk {
+    datastore_id = var.proxmox_datastore_id
+    interface    = "scsi1"
+    iothread     = true
+    discard      = "on"
+    size         = local.configuration.omarchy.data_disk
   }
 
   initialization {
