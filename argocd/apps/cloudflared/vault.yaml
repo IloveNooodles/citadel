@@ -10,7 +10,7 @@ spec:
     method: kubernetes
     mount: kubernetes
     kubernetes:
-      role: cloudflared
+      role: vault-secrets-operator
       serviceAccount: default
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
@@ -23,7 +23,7 @@ spec:
   method: kubernetes
   mount: kubernetes
   kubernetes:
-    role: cloudflared
+    role: vault-secrets-operator
     serviceAccount: default
     audience:
       - vault
