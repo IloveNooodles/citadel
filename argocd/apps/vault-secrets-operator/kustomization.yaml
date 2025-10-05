@@ -3,3 +3,5 @@ kind: Kustomization
 resources:
   - vault-secrets-operator.yaml
   - vault.yaml
+  - serviceaccount.yaml
+  - rbac.yaml
