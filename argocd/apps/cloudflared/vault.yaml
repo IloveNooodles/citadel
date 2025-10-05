@@ -28,6 +28,8 @@ spec:
   kubernetes:
     role: vault-secrets-operator
     serviceAccount: default
+    audience:
+      - vault
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultStaticSecret
