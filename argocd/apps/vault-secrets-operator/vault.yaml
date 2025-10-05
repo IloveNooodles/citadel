@@ -32,7 +32,7 @@ metadata:
   namespace: vault-secrets-operator
 spec:
   type: kv-v2
-  path: kv/data
+  path: data
   mount: kv
   destination:
     name: citadel-vault-secrets
