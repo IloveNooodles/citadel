@@ -24,17 +24,4 @@ spec:
   kubernetes:
     role: vault-secrets-operator
     serviceAccount: vault-secrets-operator
----
-apiVersion: secrets.hashicorp.com/v1beta1
-kind: VaultStaticSecret
-metadata:
-  name: citadel-vault-secrets-operator-config
-  namespace: vault-secrets-operator
-spec:
-  type: kv-v2
-  path: secrets
-  mount: kv
-  destination:
-    name: citadel-vault-secrets
-    create: true
-  vaultAuthRef: citadel-kubernetes-auth
+
