@@ -4,7 +4,7 @@ A self-managed homelab configuration built with Talos Linux, Kubernetes, and Git
 
 ## Overview
 
-Citadel is a comprehensive homelab infrastructure project that provides a modern, cloud-native environment for self-hosting applications and services. The project leverages Talos Linux as the operating system, Kubernetes for orchestration, and ArgoCD for GitOps-based application deployment.
+Citadel is a comprehensive homelab infrastructure project that provides a modern, cloud-native environment for self-hosting appliations and services. The project leverages Talos Linux as the operating system, Kubernetes for orchestration, and ArgoCD for GitOps-based application deployment.
 
 All the commands could be found in the [Taskfile](./Taskfile.yml)
 

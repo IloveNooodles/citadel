@@ -6,3 +6,4 @@ resources:
   - longhorn/
   - couchdb/
   - cloudflared/cloudflared.yaml
+  - vault-secrets-operator/

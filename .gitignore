@@ -1,3 +1,4 @@
 _out
 pass
-*secret*
+secret.yaml
+secret/
