@@ -24,7 +24,7 @@ spec:
             - name: TUNNEL_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: cloudflared-vault-secret
+                  name: cloudflared-token-credentials
                   key: token
           command:
             - cloudflared
