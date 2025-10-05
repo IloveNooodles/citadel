@@ -5,5 +5,5 @@ resources:
   - vault/
   - longhorn/
   - couchdb/
-  - cloudflared/
+  - cloudflared/cloudflared.yaml
   - vault-secrets-operator/
