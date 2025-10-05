@@ -22,6 +22,9 @@ spec:
   vaultConnectionRef: citadel-vault-connection
   method: kubernetes
   mount: kubernetes
+  allowedNamespaces:
+    - cloudflared
+    - minio
   kubernetes:
     role: vault-secrets-operator
     serviceAccount: default
