@@ -33,6 +33,8 @@ metadata:
 spec:
   type: kv-v2
   path: kv/data
-  method: kubernetes
-  role: vault-secrets-operator
+  mount: kv
+  destination:
+    name: citadel-vault-secrets
+    create: true
   vaultAuthRef: citadel-kubernetes-auth
