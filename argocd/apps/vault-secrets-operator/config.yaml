@@ -9,15 +9,3 @@ stringData:
   VAULT_AUTH_METHOD: "kubernetes"
   VAULT_AUTH_PATH: "auth/kubernetes"
   VAULT_ROLE: "vault-secrets-operator"
----
-apiVersion: secrets.hashicorp.com/v1beta1
-kind: VaultAuth
-metadata:
-  name: kubernetes-auth
-  namespace: vault-secrets-operator
-spec:
-  method: kubernetes
-  mount: kubernetes
-  kubernetes:
-    role: vault-secrets-operator
-    serviceAccount: vault-secrets-operator
