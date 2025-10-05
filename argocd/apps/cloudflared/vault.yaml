@@ -28,16 +28,16 @@ spec:
     audience:
       - kubernetes
 ---
-# apiVersion: secrets.hashicorp.com/v1beta1
-# kind: VaultStaticSecret
-# metadata:
-#   name: cloudflared-vault-secret
-#   namespace: cloudflared
-# spec:
-#   type: kv-v2
-#   mount: kv
-#   path: secrets/cloudflared
-#   destination:
-#     name: cloudflared-vault-secret
-#     create: true
-#   vaultAuthRef: cloudflared-vault-auth
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: cloudflared-vault-secret
+  namespace: cloudflared
+spec:
+  type: kv-v2
+  mount: kv
+  path: secrets/cloudflared
+  destination:
+    name: cloudflared-vault-secret
+    create: true
+  vaultAuthRef: cloudflared-vault-auth
