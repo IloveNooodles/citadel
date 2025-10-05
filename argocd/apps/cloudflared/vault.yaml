@@ -1,0 +1,43 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: cloudflared-vault-connection
+  namespace: cloudflared
+spec:
+  address: "http://vault.vault.svc.cluster.local:8200"
+  skipTLSVerify: false
+  auth:
+    method: kubernetes
+    mount: kubernetes
+    kubernetes:
+      role: cloudflared
+      serviceAccount: default
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: cloudflared-vault-auth
+  namespace: cloudflared
+spec:
+  vaultConnectionRef: cloudflared-vault-connection
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: cloudflared
+    serviceAccount: default
+    audience:
+      - vault
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: cloudflared-vault-secret
+  namespace: cloudflared
+spec:
+  type: kv-v2
+  mount: kv
+  path: secrets/cloudflared
+  destination:
+    name: cloudflared-vault-secret
+    create: true
+  vaultAuthRef: cloudflared-vault-auth
