@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: minio
       values: |
-        mode: distributed
+        mode: standalone
         rootUser: ""
         rootPassword: ""
         replicas: 2
