@@ -11,8 +11,23 @@ spec:
     targetRevision: "5.4.0"
     helm:
       releaseName: minio
-      valueFiles:
-        - values.yaml
+      values: |
+        mode: distributed
+        rootUser: ""
+        rootPassword: ""
+        replicas: 2
+        pools: 1
+        drivesPerNode: 1
+        persistence:
+          enabled: true
+          storageClass: "longhorn"
+          size: 10Gi
+        service:
+          type: ClusterIP
+          port: 9000
+        resources:
+          requests:
+            memory: "512Mi"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: minio
