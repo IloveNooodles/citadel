@@ -7,3 +7,4 @@ resources:
   - couchdb/
   - cloudflared/cloudflared.yaml
   - vault-secrets-operator/
+  - minio/
