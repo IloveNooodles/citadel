@@ -28,6 +28,11 @@ spec:
         resources:
           requests:
             memory: "512Mi"
+        # Explicitly disable additional storage
+        console:
+          enabled: false
+        # Ensure only data PVCs are created
+        defaultBuckets: ""
   destination:
     server: "https://kubernetes.default.svc"
     namespace: minio
