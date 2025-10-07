@@ -2,6 +2,8 @@ mode: distributed
 rootUser: ""
 rootPassword: ""
 replicas: 2
+pools: 1
+drivesPerNode: 1
 persistence:
   enabled: true
   storageClass: "longhorn"

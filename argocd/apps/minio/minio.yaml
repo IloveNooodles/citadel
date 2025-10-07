@@ -11,7 +11,7 @@ spec:
     targetRevision: "5.4.0"
     helm:
       releaseName: minio
-      valuesFile:
+      valueFiles:
         - values.yaml
   destination:
     server: "https://kubernetes.default.svc"
