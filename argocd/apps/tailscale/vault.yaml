@@ -36,6 +36,6 @@ spec:
   mount: kv
   path: secrets/tailscale
   destination:
-    name: tailscale-vault-secret
+    name: operator-oauth
     create: true
   vaultAuthRef: tailscale-vault-auth

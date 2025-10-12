@@ -9,17 +9,6 @@ spec:
     repoURL: https://pkgs.tailscale.com/helmcharts
     chart: tailscale-operator
     targetRevision: 1.88.3
-    helm:
-      values: |
-        oauth:
-          clientId:
-            existingSecret:
-              name: tailscale-vault-secret
-              key: CLIENT_ID
-          clientSecret:
-            existingSecret:
-              name: tailscale-vault-secret
-              key: CLIENT_SECRET
   destination:
     server: https://kubernetes.default.svc
     namespace: tailscale
