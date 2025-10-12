@@ -5,12 +5,14 @@ locals {
       "vm_id"     = 110
       "cpu"       = 2
       "tags"      = ["kubernetes", "control-plane"]
+      "memory"    = 6144
     }
     "talos-worker-0" = {
       "node_name" = var.proxmox_node_name
       "vm_id"     = 111
       "cpu"       = 2
       "tags"      = ["kubernetes", "worker"]
+      "memory"    = 6144
     }
   }
 
@@ -52,7 +54,7 @@ resource "proxmox_virtual_environment_vm" "talos" {
   }
 
   memory {
-    dedicated = 4096
+    dedicated = each.value.memory
   }
 
   disk {
