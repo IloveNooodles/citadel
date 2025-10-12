@@ -1,0 +1,41 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultConnection
+metadata:
+  name: tailscale-vault-connection
+  namespace: tailscale
+spec:
+  address: "http://vault.vault.svc.cluster.local:8200"
+  skipTLSVerify: false
+  auth:
+    method: kubernetes
+    mount: kubernetes
+    kubernetes:
+      role: tailscale
+      serviceAccount: default
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultAuth
+metadata:
+  name: tailscale-vault-auth
+  namespace: tailscale
+spec:
+  vaultConnectionRef: tailscale-vault-connection
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: tailscale
+    serviceAccount: default
+---
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: tailscale-vault-secret
+  namespace: tailscale
+spec:
+  type: kv-v2
+  mount: kv
+  path: secrets/tailscale
+  destination:
+    name: tailscale-vault-secret
+    create: true
+  vaultAuthRef: tailscale-vault-auth

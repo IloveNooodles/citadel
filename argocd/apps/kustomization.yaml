@@ -8,3 +8,4 @@ resources:
   - cloudflared/cloudflared.yaml
   - vault-secrets-operator/
   - minio/
+  - tailscale/
