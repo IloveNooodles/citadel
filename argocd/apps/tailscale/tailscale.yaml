@@ -15,13 +15,13 @@ spec:
           clientId:
             valueFrom:
               secretKeyRef:
-                name: tailscale-oauth-credentials
-                key: clientId
+                name: tailscale-vault-secret
+                key: CLIENT_ID
           clientSecret:
             valueFrom:
               secretKeyRef:
-                name: tailscale-oauth-credentials
-                key: clientSecret
+                name: tailscale-vault-secret
+                key: CLIENT_SECRET
   destination:
     server: https://kubernetes.default.svc
     namespace: tailscale
