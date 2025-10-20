@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Project README
+    url: https://github.com/samuelswandi/citadel#readme
+    about: Start here for setup and common tasks
+
