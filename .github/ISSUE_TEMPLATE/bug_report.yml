@@ -1,0 +1,54 @@
+name: Bug report
+description: File a bug to help us improve
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Briefly describe the bug
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide exact steps and relevant commands
+      placeholder: |
+        1. Go to '...'
+        2. Run '...'
+        3. See error '...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior / logs
+      description: Include relevant logs, `terraform plan`, `kubectl` output, or screenshots
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Terraform
+        - ArgoCD
+        - Kubernetes
+        - Talos
+        - Vault / VSO
+        - Longhorn
+        - MinIO
+        - Cloudflared
+        - Tailscale
+        - Docs
+  - type: input
+    id: version
+    attributes:
+      label: Component versions (if applicable)
+      description: e.g., Terraform version, kubectl version, chart versions
+

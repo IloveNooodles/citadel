@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an idea for this project
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / context
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the change, alternatives considered, and trade-offs
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Define what success looks like
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Areas affected
+      options:
+        - label: Terraform
+        - label: ArgoCD / Kustomize
+        - label: Kubernetes Manifests
+        - label: Talos
+        - label: Vault / VSO
+        - label: Storage (Longhorn / MinIO)
+        - label: Networking (Cloudflared / Tailscale)
+        - label: Documentation
+
