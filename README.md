@@ -36,6 +36,25 @@ The infrastructure is provisioned on Proxmox VE using Terraform, creating:
 - Talos CLI (`talosctl`)
 - kubectl
 - Task runner (for using Taskfile)
+- jq and ssh (required by `installation.sh`)
+- sshpass (optional; only if using SSH password auth in `installation.sh`)
+
+## One-command install
+
+If you want to install everything end-to-end (Terraform VMs, Talos, ArgoCD, and the app-of-apps), use the installer:
+
+```bash
+chmod +x ./installation.sh
+./installation.sh
+```
+
+The script will prompt you for:
+- Your username to name the homelab as `<username>-homelab`
+- Proxmox API credentials and node/datastore for Terraform
+- Proxmox SSH access (key or password) to start and rename VMs
+- Optional Talos version/schema overrides
+
+It will then provision the VMs, bootstrap the Talos Kubernetes cluster, install ArgoCD, create an Application named `<username>-homelab-apps`, and rename the Proxmox VMs with the homelab name.
 
 ## Quick Start
 
@@ -104,6 +123,7 @@ citadel/
 │   └── variables.tf         # Terraform variables
 ├── talos/                    # Talos-specific configurations
 ├── _out/                     # Generated configurations
+├── installation.sh           # One-command installer
 └── Taskfile.yml             # Task automation
 ```
 
