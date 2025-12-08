@@ -2,6 +2,7 @@ apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuthGlobal
 metadata:
   name: global-vault-auth
+  namespace: vault-secrets-operator
 spec:
   vaultConnectionRef: global-vault-connection
   method: kubernetes
