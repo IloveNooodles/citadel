@@ -1,5 +1,5 @@
 apiVersion: secrets.hashicorp.com/v1beta1
-kind: ClusterVaultAuth
+kind: VaultAuthGlobal
 metadata:
   name: global-vault-auth
 spec:

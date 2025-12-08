@@ -1,5 +1,5 @@
 apiVersion: secrets.hashicorp.com/v1beta1
-kind: ClusterVaultConnection
+kind: VaultConnection
 metadata:
   name: global-vault-connection
 spec:
