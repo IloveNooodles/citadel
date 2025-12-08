@@ -6,6 +6,7 @@ resources:
   - longhorn/
   - couchdb/
   - cloudflared/cloudflared.yaml
+  - prometheus/prometheus.yaml
   - vault-secrets-operator/
   - minio/
   - tailscale/

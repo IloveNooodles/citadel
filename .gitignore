@@ -2,3 +2,4 @@ _out
 pass
 secret.yaml
 secret/
+cillium-manifest.yaml
