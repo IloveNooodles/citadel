@@ -10,16 +10,4 @@ spec:
   destination:
     name: grafana-secret
     create: true
-  vaultAuthRef: grafana-vault-auth
----
-apiVersion: secrets.hashicorp.com/v1beta1
-kind: VaultAuth
-metadata:
-  name: grafana-vault-auth
-  namespace: monitoring
-spec:
-  vaultAuthGlobalRef:
-    allowDefault: true
-    namespace: vault-secrets-operator
----
 
