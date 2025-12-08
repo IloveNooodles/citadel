@@ -20,5 +20,6 @@ metadata:
 spec:
   vaultAuthGlobalRef:
     allowDefault: true
+    namespace: vault-secret-operator
 ---
 
