@@ -9,3 +9,4 @@ resources:
   - vault-secrets-operator/
   - minio/
   - tailscale/
+  - grafana/
