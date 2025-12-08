@@ -15,7 +15,6 @@ spec:
     runAsUser: 1000
   serviceAccountName: prometheus
   version: v2.22.1
-  serviceMonitorSelector:
-    matchLabels:
-      release: prometheus
+  serviceMonitorSelector: {}
+  serviceMonitorNamespaceSelector: {}
   enableAdminAPI: false
