@@ -10,4 +10,4 @@ spec:
   destination:
     name: grafana-secret
     create: true
-  vaultAuthRef: global-vault-auth
+  vaultAuthGlobalRef: global-vault-auth
