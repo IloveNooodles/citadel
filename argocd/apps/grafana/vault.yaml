@@ -1,0 +1,13 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: VaultStaticSecret
+metadata:
+  name: monitoring-vault-secret
+  namespace: monitoring
+spec:
+  type: kv-v2
+  mount: kv
+  path: secrets/monitoring
+  destination:
+    name: grafana-secret
+    create: true
+  vaultAuthRef: global-vault-auth

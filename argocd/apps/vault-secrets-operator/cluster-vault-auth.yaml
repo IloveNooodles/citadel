@@ -1,0 +1,11 @@
+apiVersion: secrets.hashicorp.com/v1beta1
+kind: ClusterVaultAuth
+metadata:
+  name: global-vault-auth
+spec:
+  vaultConnectionRef: global-vault-connection
+  method: kubernetes
+  mount: kubernetes
+  kubernetes:
+    role: global
+    serviceAccount: default
