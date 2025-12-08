@@ -4,6 +4,7 @@ metadata:
   name: grafana-vault-auth
   namespace: monitoring
 spec:
+  vaultConnectionRef: vault-secrets-operator/global-vault-connection
   vaultAuthGlobalRef:
     allowDefault: true
     namespace: vault-secrets-operator
