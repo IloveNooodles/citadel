@@ -6,7 +6,7 @@ metadata:
 spec:
   vaultConnectionRef: global-vault-connection
   defaultAuthMethod: kubernetes
-  mount: kubernetes
   kubernetes:
+    mount: kubernetes
     role: global
     serviceAccount: default
