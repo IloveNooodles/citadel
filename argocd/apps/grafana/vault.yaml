@@ -10,7 +10,7 @@ spec:
   destination:
     name: grafana-secret
     create: true
-  vaultAuthGlobalRef: grafana-vault-auth
+  vaultAuthRef: grafana-vault-auth
 ---
 apiVersion: secrets.hashicorp.com/v1beta1
 kind: VaultAuth
