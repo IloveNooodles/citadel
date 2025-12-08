@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - grafana.yaml
   - vault.yaml
+  - namespace.yaml
