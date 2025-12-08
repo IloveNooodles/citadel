@@ -21,6 +21,37 @@ spec:
             existingSecret: "grafana-secret"
             userKey: grafana-user
             passwordKey: grafana-password
+          # 1. Configure the Provider
+
+          dashboardProviders:
+            dashboardproviders.yaml:
+              apiVersion: 1
+              providers:
+                - name: 'default'
+                  orgId: 1
+                  folder: ''
+                  type: file
+                  disableDeletion: false
+                  editable: true
+                  options:
+                    path: /var/lib/grafana/dashboards/default
+
+          dashboards:
+            default:
+              hubble-metrics:
+                gnetId: 16613
+                revision: 1
+                datasource: Prometheus
+              
+              kubernetes-cluste-metrics:
+                gnetId: 15661
+                revision: 2
+                datasource: Prometheus
+
+              argocd-metrics:
+                gnetId: 14584
+                revision: 1
+                datasource: Prometheus
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
