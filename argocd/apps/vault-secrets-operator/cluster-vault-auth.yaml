@@ -5,7 +5,7 @@ metadata:
   namespace: vault-secrets-operator
 spec:
   vaultConnectionRef: global-vault-connection
-  method: kubernetes
+  defaultAuthMethod: kubernetes
   mount: kubernetes
   kubernetes:
     role: global
