@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: pod-to-pod-communication
-  namespace: pod-to-pod-communication
+  namespace: argocd
 spec:
   project: infra
   source:
