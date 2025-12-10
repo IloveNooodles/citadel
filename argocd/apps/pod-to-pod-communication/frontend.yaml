@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: pod-to-pod-communication
+  labels:
+    app: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: pod-to-pod-communication
+  labels:
+    app: frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: curlimages/curl:latest
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - |
+              while true; do
+                echo "=== Frontend calling Backend at $(date) ==="
+                curl -s http://backend.pod-to-pod-communication.svc.cluster.local:8080
+                echo ""
+                echo "Response received successfully!"
+                sleep 10
+              done
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "25m"
+            limits:
+              memory: "64Mi"
+              cpu: "50m"
+          env:
+            - name: BACKEND_URL
+              value: "http://backend.pod-to-pod-communication.svc.cluster.local:8080"

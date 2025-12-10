@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pod-to-pod-communication
+  namespace: pod-to-pod-communication
+spec:
+  project: infra
+  source:
+    repoURL: https://github.com/IloveNooodles/citadel.git
+    path: argocd/apps/pod-to-pod-communication
+    targetRevision: main
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pod-to-pod-communication
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
