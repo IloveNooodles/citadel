@@ -35,14 +35,14 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: curlimages/curl:latest
+          image: busybox:latest
           command: ["/bin/sh"]
           args:
             - "-c"
             - |
               while true; do
                 echo "=== Frontend calling Backend at $(date) ==="
-                curl -s http://backend.pod-to-pod-communication.svc.cluster.local:8080
+                wget -q -O- http://backend.pod-to-pod-communication.svc.cluster.local:8080
                 echo ""
                 echo "Response received successfully!"
                 sleep 10
@@ -57,3 +57,5 @@ spec:
           env:
             - name: BACKEND_URL
               value: "http://backend.pod-to-pod-communication.svc.cluster.local:8080"
+          stdin: true
+          tty: true
