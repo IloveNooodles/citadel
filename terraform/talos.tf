@@ -41,7 +41,7 @@ resource "proxmox_virtual_environment_vm" "talos" {
   vm_id       = each.value.vm_id
   bios        = "seabios"
   description = "Managed by Terraform"
-  started     = false
+  started     = true
   template    = false
 
   agent {

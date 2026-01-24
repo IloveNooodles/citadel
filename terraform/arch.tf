@@ -84,4 +84,8 @@ resource "proxmox_virtual_environment_vm" "omarchy" {
   network_device {
     bridge = "vmbr0"
   }
+
+  lifecycle {
+    ignore_changes = all
+  }
 }
