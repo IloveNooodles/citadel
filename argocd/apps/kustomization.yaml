@@ -11,4 +11,4 @@ resources:
   - minio/
   - tailscale/
   - grafana/
-  - pod-to-pod-communication/app.yaml
+  - harbor/app.yaml
