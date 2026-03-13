@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - longhorn.yaml
   - servicemonitor.yaml
+  - httproute.yaml
