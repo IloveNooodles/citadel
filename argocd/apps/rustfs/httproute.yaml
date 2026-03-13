@@ -5,19 +5,24 @@ metadata:
   namespace: rustfs
 spec:
   hostnames:
-    - "rustfs.internal" # S3 API Endpoint
-    - "rustfs-console.internal" # Web Management UI
+    - "rustfs.internal"
+    - "rustfs-console.internal"
   parentRefs:
     - name: tailscale-gateway
       namespace: tailscale
   rules:
-    - matches:
-        - hostname: "rustfs.internal"
-      backendRefs:
-        - name: rustfs-svc
-          port: 9000
+    # Rule for the Console
     - matches:
         - hostname: "rustfs-console.internal"
+          path: { type: PathPrefix, value: / }
       backendRefs:
         - name: rustfs-svc
           port: 9001
+
+    # Rule for the S3 API
+    - matches:
+        - hostname: "rustfs.internal"
+          path: { type: PathPrefix, value: / }
+      backendRefs:
+        - name: rustfs-svc
+          port: 9000
