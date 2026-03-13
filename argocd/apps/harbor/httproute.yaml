@@ -13,6 +13,6 @@ spec:
     - matches:
         - path: { type: PathPrefix, value: / }
       backendRefs:
-        - name: harbor
+        - name: harbor-core
           namespace: harbor
           port: 80
