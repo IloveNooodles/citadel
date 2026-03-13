@@ -8,7 +8,6 @@ resources:
   - cloudflared/cloudflared.yaml
   - prometheus/prometheus-app.yaml
   - vault-secrets-operator/
-  - minio/
   - tailscale/
   - grafana/
   - harbor/
