@@ -11,7 +11,13 @@ spec:
   sources:
     - chart: harbor
       repoURL: https://helm.goharbor.io
-      targetRevision: 1.18.0
+      targetRevision: 1.18.2
+      helm:
+        parameters:
+          - name: "externalURL"
+            value: "http://harbor.internal"
+          - name: "expose.ingress.hosts.core"
+            value: "harbor.internal"
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
