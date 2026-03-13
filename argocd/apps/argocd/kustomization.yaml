@@ -5,6 +5,7 @@ resources:
   - projects/infra.yaml
   - plugins/vault.yaml
   - servicemonitor/servicemonitor.yaml
+  - routing/httproute.yaml
 
 patches:
   - target:

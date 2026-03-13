@@ -1,0 +1,33 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: tailscale-gateway
+  namespace: tailscale
+  annotations:
+    cilium.io/service-type: "LoadBalancer"
+    tailscale.com/expose: "true"
+spec:
+  gatewayClassName: cilium
+  addresses:
+    - value: "192.168.1.230"
+      type: IPAddress
+  listeners:
+    - name: https
+      port: 443
+      protocol: HTTPS
+      # hostname: "*.internal"
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: internal-tls
+    - name: http
+      port: 80
+      protocol: HTTP
+      # hostname: "*.internal"
+      allowedRoutes:
+        namespaces:
+          from: All

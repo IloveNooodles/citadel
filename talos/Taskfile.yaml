@@ -8,27 +8,34 @@ tasks:
         helm template \
         cilium \
         cilium/cilium \
-        --version 1.18.4 \
+        --version 1.19.1 \
         --namespace kube-system \
+        --api-versions="gateway.networking.k8s.io/v1/GatewayClass" \
         --set ipam.mode=kubernetes \
+        --set l7Proxy=true \
         --set kubeProxyReplacement=true \
         --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
         --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
         --set cgroup.autoMount.enabled=false \
         --set cgroup.hostRoot=/sys/fs/cgroup \
-        --set k8sServiceHost=localhost \
+        --set k8sServiceHost=127.0.0.1 \
         --set k8sServicePort=7445 \
         --set prometheus.enabled=true \
         --set operator.prometheus.enabled=true \
         --set hubble.relay.enabled=true \
         --set hubble.ui.enabled=true \
         --set hubble.metrics.enableOpenMetrics=true \
-        --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}"        
+        --set hubble.metrics.enabled="{dns,drop,tcp,flow,port-distribution,icmp,httpV2:exemplars=true;labelsContext=source_ip\,source_namespace\,source_workload\,destination_ip\,destination_namespace\,destination_workload\,traffic_direction}" \
         --set hubble.metrics.serviceMonitor.enabled=true \
         --set hubble.metrics.serviceMonitor.additionalLabels.release=prometheus \
-        --set=gatewayAPI.enabled=true \
-        --set=gatewayAPI.enableAlpn=true \
-        --set=gatewayAPI.enableAppProtocol=true > cillium-manifest.yaml
+        --set l2announcements.enabled=true \
+        --set externalIPs.enabled=true \
+        --set bgetpControlPlane.enabled=true \
+        --set gatewayAPI.enabled=true \
+        --set gatewayAPI.hostNetwork.enabled=false \
+        --set-string gatewayAPI.gatewayClass.create="true" \
+        --set gatewayAPI.enableAlpn=true \
+        --set gatewayAPI.enableAppProtocol=true > cillium-manifest.yaml
   patch-cillium:
     cmds:
       - kubectl apply -f cillium-manifest.yaml

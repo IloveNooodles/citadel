@@ -3,3 +3,5 @@ pass
 secret.yaml
 secret/
 cillium-manifest.yaml
+tls.key
+tls.crt
