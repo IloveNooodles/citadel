@@ -10,6 +10,17 @@ spec:
     - name: tailscale-gateway
       namespace: tailscale
   rules:
+    # Rule 1: Send API, Auth, and Docker traffic to Core
+    - matches:
+        - path: { type: PathPrefix, value: /api/ }
+        - path: { type: PathPrefix, value: /v2/ }
+        - path: { type: PathPrefix, value: /c/ }
+        - path: { type: PathPrefix, value: /service/ }
+      backendRefs:
+        - name: harbor-core
+          namespace: harbor
+          port: 80
+    # Rule 2: Everything else (UI assets) goes to Portal
     - matches:
         - path: { type: PathPrefix, value: / }
       backendRefs:
