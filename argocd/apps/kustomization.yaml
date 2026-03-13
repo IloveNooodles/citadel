@@ -11,4 +11,4 @@ resources:
   - minio/
   - tailscale/
   - grafana/
-  - harbor/harbor.yaml
+  - harbor/
