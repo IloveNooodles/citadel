@@ -10,5 +10,4 @@ resources:
   - vault-secrets-operator/
   - tailscale/
   - grafana/
-  - harbor/
   - rustfs/
