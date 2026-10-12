@@ -9,7 +9,7 @@ spec:
     # Point to the official RustFS Helm repo
     repoURL: "https://charts.rustfs.com"
     chart: rustfs
-    targetRevision: "0.0.85" # Matches the current stable-ish Alpha
+    targetRevision: "0.0.99" # RustFS 1.0.1 image with the current chart
     helm:
       releaseName: rustfs
       values: |
@@ -21,14 +21,18 @@ spec:
 
         replicaCount: 1
 
+        image:
+          rustfs:
+            tag: "1.0.1"
+
         secret:
           rustfs:
             access_key: "admin"
             secret_key: "password123"
 
         storageclass:
-          name: "longhorn"
-          dataStorageSize: "10Gi"
+          name: "longhorn-rustfs"
+          dataStorageSize: "1Gi"
           logStorageSize: "1Gi"
 
         resources:
