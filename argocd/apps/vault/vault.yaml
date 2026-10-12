@@ -8,11 +8,16 @@ spec:
   source:
     repoURL: "https://helm.releases.hashicorp.com"
     chart: vault
-    targetRevision: "0.30.1"
+    targetRevision: "0.34.1"
     helm:
       releaseName: vault
-      valuesFile:
-        - values.yaml
+      values: |
+        server:
+          image:
+            tag: "2.1.2"
+        injector:
+          agentImage:
+            tag: "2.1.2"
   destination:
     server: "https://kubernetes.default.svc"
     namespace: vault
