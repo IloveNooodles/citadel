@@ -14,7 +14,7 @@ spec:
     runAsNonRoot: true
     runAsUser: 1000
   serviceAccountName: prometheus
-  version: v2.22.1
+  version: v3.14.0
   serviceMonitorSelector: {}
   serviceMonitorNamespaceSelector: {}
   enableAdminAPI: false
