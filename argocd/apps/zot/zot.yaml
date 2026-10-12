@@ -12,6 +12,7 @@ spec:
     helm:
       releaseName: zot
       values: |
+        replicaCount: 0
         image:
           tag: v2.1.22
         service:
