@@ -3,15 +3,10 @@ kind: Kustomization
 namespace: argocd
 resources:
   - projects/infra.yaml
-  - plugins/vault.yaml
   - servicemonitor/servicemonitor.yaml
   - routing/httproute.yaml
 
 patches:
-  - target:
-      kind: Deployment
-      name: argocd-repo-server
-    path: repo-server/argocd-repo-server.yaml
   - target:
       kind: ConfigMap
       name: argocd-cm

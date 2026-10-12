@@ -18,8 +18,8 @@ locals {
 
   bootable = {
     type      = "iso"
-    file_name = "talos-v1.11.1.iso"
-    url       = "https://factory.talos.dev/image/b1ba84be4f5193a24085cc7e22fce31105e1583504d7d5aef494318f7cb1abd0/v1.11.1/metal-amd64.iso"
+    file_name = "talos-v1.14.2.iso"
+    url       = "https://factory.talos.dev/image/b1ba84be4f5193a24085cc7e22fce31105e1583504d7d5aef494318f7cb1abd0/v1.14.2/metal-amd64.iso"
   }
 }
 
