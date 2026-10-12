@@ -16,6 +16,30 @@ spec:
           couchdb:
             uuid: decafbaddecafbaddecafbaddecafbad
         clusterSize: 1
+        persistentVolume:
+          enabled: true
+          size: 1Gi
+          storageClass: longhorn-couchdb
+          existingClaims:
+            - volumeName: database-storage
+              claimName: couchdb-data
+              persistentVolumeName: couchdb-data-pv
+              volumeSource:
+                csi:
+                  driver: driver.longhorn.io
+                  fsType: ext4
+                  volumeAttributes:
+                    backupTargetName: default
+                    dataEngine: v1
+                    dataLocality: disabled
+                    disableRevisionCounter: "true"
+                    fromBackup: ""
+                    fsType: ext4
+                    numberOfReplicas: "1"
+                    staleReplicaTimeout: "30"
+                    storage.kubernetes.io/csiProvisionerIdentity: 1791794714071-4918-driver.longhorn.io
+                    unmapMarkSnapChainRemoved: ignored
+                  volumeHandle: pvc-fb3e40e3-ba20-4521-a020-6d49d4a69ee4
   destination:
     server: "https://kubernetes.default.svc"
     namespace: couchdb
