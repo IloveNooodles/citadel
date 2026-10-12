@@ -21,15 +21,40 @@ spec:
         configFiles:
           config.json: |-
             {
-              "storage": { "rootDirectory": "/var/lib/registry" },
+              "storage": {
+                "rootDirectory": "/var/lib/registry",
+                "storageDriver": {
+                  "name": "s3",
+                  "regionendpoint": "http://rustfs-svc.rustfs.svc.cluster.local:9000",
+                  "region": "us-east-1",
+                  "bucket": "zot",
+                  "secure": false,
+                  "forcepathstyle": true,
+                  "accesskey": "admin",
+                  "secretkey": "password123"
+                }
+              },
               "http": {
                 "address": "0.0.0.0",
                 "port": "5000",
                 "readTimeout": "60s",
                 "writeTimeout": "60s"
               },
-              "log": { "level": "info" }
+              "log": { "level": "info" },
+              "extensions": {
+                "metrics": {
+                  "enable": true,
+                  "prometheus": { "path": "/metrics" }
+                },
+                "search": { "enable": true },
+                "ui": { "enable": true }
+              }
             }
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true
+            interval: 30s
         persistence: true
         pvc:
           storage: 8Gi
