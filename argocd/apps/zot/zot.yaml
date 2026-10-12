@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: zot
+  namespace: argocd
+spec:
+  project: infra
+  source:
+    repoURL: https://zotregistry.dev/helm-charts
+    chart: zot
+    targetRevision: 0.1.128
+    helm:
+      releaseName: zot
+      values: |
+        image:
+          tag: v2.1.22
+        service:
+          type: ClusterIP
+          port: 5000
+        mountConfig: true
+        configFiles:
+          config.json: |-
+            {
+              "storage": { "rootDirectory": "/var/lib/registry" },
+              "http": {
+                "address": "0.0.0.0",
+                "port": "5000",
+                "readTimeout": "60s",
+                "writeTimeout": "60s"
+              },
+              "log": { "level": "info" }
+            }
+        persistence: true
+        pvc:
+          storage: 8Gi
+          storageClassName: longhorn
+        httproute:
+          enabled: true
+          parentRefs:
+            - name: tailscale-gateway
+              namespace: tailscale
+          hostnames:
+            - zot.internal
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: zot
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
