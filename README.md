@@ -124,6 +124,9 @@ Document-oriented database for application data storage.
 ### Cloudflared
 Secure tunnel service for external access to internal services.
 
+### Zot
+Optional self-hosted OCI registry backed by the `zot` bucket in RustFS. Zot is paused with `replicaCount: 0` while GHCR is in use; its RustFS data and persistent volume are retained. To resume it, set `replicaCount: 1` in `argocd/apps/zot/zot.yaml` and push the change for ArgoCD to sync.
+
 ## Task Automation
 
 The project includes a Taskfile with common operations:
