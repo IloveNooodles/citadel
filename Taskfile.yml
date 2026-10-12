@@ -16,7 +16,7 @@ tasks:
       TALOSCONFIG: "_out/talosconfig"
       CONTROL_PLANE_IP: 192.168.1.57
       WORKER_IP: 192.168.1.133
-      TALOS_VERSION: v1.11.1
+      TALOS_VERSION: v1.14.2
       SCHEMA: b1ba84be4f5193a24085cc7e22fce31105e1583504d7d5aef494318f7cb1abd0
     cmds:
       - talosctl gen config talos-proxmox-cluster https://$CONTROL_PLANE_IP:6443 --output-dir _out --install-image factory.talos.dev/installer/$SCHEMA:$TALOS_VERSION
