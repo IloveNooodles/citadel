@@ -21,6 +21,13 @@ spec:
             existingSecret: "grafana-secret"
             userKey: grafana-user
             passwordKey: grafana-password
+          persistence:
+            enabled: true
+            type: pvc
+            storageClassName: longhorn
+            accessModes:
+              - ReadWriteOnce
+            size: 5Gi
           # 1. Configure the Provider
 
           dashboardProviders:
