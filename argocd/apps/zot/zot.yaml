@@ -23,6 +23,7 @@ spec:
             {
               "storage": {
                 "rootDirectory": "/var/lib/registry",
+                "dedupe": false,
                 "storageDriver": {
                   "name": "s3",
                   "regionendpoint": "http://rustfs-svc.rustfs.svc.cluster.local:9000",
