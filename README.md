@@ -4,9 +4,9 @@ A self-managed homelab configuration built with Talos Linux, Kubernetes, and Git
 
 ## Overview
 
-Citadel is a comprehensive homelab infrastructure project that provides a modern, cloud-native environment for self-hosting appliations and services. The project leverages Talos Linux as the operating system, Kubernetes for orchestration, and ArgoCD for GitOps-based application deployment.
+Citadel is a homelab infrastructure project for self-hosting applications with Talos Linux, Kubernetes, and ArgoCD.
 
-All the commands could be found in the [Taskfile](./Taskfile.yml)
+Common infrastructure commands are defined in the [Taskfile](./Taskfile.yml). Kubernetes applications are managed from `argocd/`.
 
 ## Architecture
 
@@ -44,7 +44,7 @@ The infrastructure is provisioned on Proxmox VE using Terraform, creating:
 Configure your Proxmox credentials and deploy the infrastructure:
 
 ```bash
-# Set up Terraform variables (we can directly modified the taskfile)
+# Set Proxmox Terraform variables for this shell session
 export TF_VAR_proxmox_endpoint="https://your-proxmox-server:8006"
 export TF_VAR_proxmox_api_token="your-api-token"
 export TF_VAR_proxmox_username="your-username"
@@ -77,6 +77,9 @@ Install and configure ArgoCD:
 # Install ArgoCD
 task setup-argocd
 
+# Register the GitOps root application
+kubectl apply -f argocd/app-of-apps.yaml
+
 # Get ArgoCD admin password
 task get-argocd-password
 
@@ -92,39 +95,48 @@ Access ArgoCD at `https://localhost:8080` (admin password from previous step).
 citadel/
 ├── argocd/                    # ArgoCD applications
 │   ├── app-of-apps.yaml      # Root application
-│   └── apps/                 # Application definitions
-│       ├── argocd/           # ArgoCD configuration
-│       ├── vault/            # Vault secrets management
-│       ├── longhorn/         # Distributed storage
-│       ├── couchdb/          # Document database
-│       └── cloudflared/      # Secure tunnels
+│   └── apps/                 # Application definitions and values
 ├── terraform/                # Infrastructure as Code
 │   ├── talos.tf             # Talos VMs
 │   ├── arch.tf              # Arch Linux VM
+│   ├── home-assistant.tf    # Home Assistant VM
 │   └── variables.tf         # Terraform variables
-├── talos/                    # Talos-specific configurations
-├── _out/                     # Generated configurations
+├── talos/                    # Talos machine patches
 └── Taskfile.yml             # Task automation
 ```
 
 ## Applications
 
 ### ArgoCD
+
 GitOps continuous delivery tool for managing Kubernetes applications.
 
 ### Vault
+
 HashiCorp Vault for secrets management and encryption.
 
 ### Longhorn
+
 Distributed block storage for Kubernetes, providing persistent volumes.
 
 ### CouchDB
+
 Document-oriented database for application data storage.
 
 ### Cloudflared
+
 Secure tunnel service for external access to internal services.
 
+### Cluster services
+
+Cilium provides Kubernetes networking. Longhorn provides persistent storage. Vault and Vault Secrets Operator handle secrets. Prometheus and Grafana provide monitoring. RustFS provides S3-compatible storage. Tailscale provides private access.
+
+### Other workloads
+
+CouchDB and the Arch Linux and Home Assistant VMs provide application and homelab workloads.
+
 ### Zot
+
 Optional self-hosted OCI registry backed by the `zot` bucket in RustFS. Zot is paused with `replicaCount: 0` while GHCR is in use; its RustFS data and persistent volume are retained. To resume it, set `replicaCount: 1` in `argocd/apps/zot/zot.yaml` and push the change for ArgoCD to sync.
 
 ## Task Automation
@@ -141,17 +153,13 @@ The project includes a Taskfile with common operations:
 
 ## Configuration
 
-### Environment Variables
+### Talos Configuration
 
-Set the following environment variables for Talos configuration:
-
-- `CONTROL_PLANE_IP`: IP address of the control plane node
-- `WORKER_IP`: IP address of the worker node
-- `TALOS_VERSION`: Talos version (default: v1.11.1)
+The current control-plane and worker addresses, Talos version, and installer schema are set in the `gen-talos-config` task in `Taskfile.yml`. Update those values there when the cluster configuration changes. That task generates the machine configs and applies them to both nodes.
 
 ### Terraform Variables
 
-To use terraform variables we can create `.auto.tfvars` file and fill the following information:
+Provide these required Terraform variables with `TF_VAR_*` environment variables (as shown above) or a local Terraform variables file:
 
 - `proxmox_endpoint`: Proxmox API endpoint
 - `proxmox_api_token`: API token for authentication
@@ -159,6 +167,8 @@ To use terraform variables we can create `.auto.tfvars` file and fill the follow
 - `proxmox_password`: Proxmox password
 - `proxmox_node_name`: Target Proxmox node (default: "pve")
 - `proxmox_datastore_id`: Storage datastore (default: "local-lvm")
+
+`task add-talos-kubeinfo` writes the cluster kubeconfig to `~/.kube/talos-kubeconfig.yml`; select it with `kubectl --kubeconfig ~/.kube/talos-kubeconfig.yml` or merge it into your usual kubeconfig.
 
 ## Security Considerations
 
@@ -203,6 +213,7 @@ This project is licensed under the terms specified in the LICENSE file.
 ## Support
 
 For issues and questions:
+
 1. Check the troubleshooting section
 2. Review Talos documentation
 3. Check ArgoCD documentation
