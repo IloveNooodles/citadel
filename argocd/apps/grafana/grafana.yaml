@@ -21,6 +21,15 @@ spec:
             existingSecret: "grafana-secret"
             userKey: grafana-user
             passwordKey: grafana-password
+          datasources:
+            datasources.yaml:
+              apiVersion: 1
+              datasources:
+                - name: Prometheus
+                  type: prometheus
+                  access: proxy
+                  url: http://prometheus-operated.prometheus.svc.cluster.local:9090
+                  isDefault: true
           persistence:
             enabled: true
             type: pvc
