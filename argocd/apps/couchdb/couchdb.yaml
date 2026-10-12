@@ -16,6 +16,7 @@ spec:
           couchdb:
             uuid: decafbaddecafbaddecafbaddecafbad
         clusterSize: 1
+        createAdminSecret: false
         image:
           tag: 3.5.2.1
         persistentVolume:
