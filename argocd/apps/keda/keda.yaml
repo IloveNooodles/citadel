@@ -4,7 +4,7 @@ metadata:
   name: keda
   namespace: argocd
 spec:
-  project: infra
+  project: keda
   source:
     repoURL: https://kedacore.github.io/charts
     chart: keda

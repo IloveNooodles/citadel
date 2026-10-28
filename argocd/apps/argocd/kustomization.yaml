@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: argocd
 resources:
   - projects/infra.yaml
+  - projects/keda.yaml
   - projects/prometheus.yaml
   - servicemonitor/servicemonitor.yaml
   - routing/httproute.yaml
