@@ -6,6 +6,7 @@ resources:
   - projects/prometheus.yaml
   - servicemonitor/servicemonitor.yaml
   - routing/httproute.yaml
+  - config-map/argocd-cmd-params-cm.yaml
 
 patches:
   - target:
