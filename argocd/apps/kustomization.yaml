@@ -11,4 +11,5 @@ resources:
   - tailscale/
   - grafana/
   - rustfs/
+  - keda/
   - zot/zot.yaml
